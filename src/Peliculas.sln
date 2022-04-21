@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peliculas.Data", "Peliculas.Data\Peliculas.Data.csproj", "{A5FB3080-D9F6-4934-A797-E571F4400AD1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peliculas.WebApi", "Peliculas.WebApi\Peliculas.WebApi.csproj", "{F8CD215B-A959-4F17-9F48-AF733FF1673C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A5FB3080-D9F6-4934-A797-E571F4400AD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5FB3080-D9F6-4934-A797-E571F4400AD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5FB3080-D9F6-4934-A797-E571F4400AD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5FB3080-D9F6-4934-A797-E571F4400AD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8CD215B-A959-4F17-9F48-AF733FF1673C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8CD215B-A959-4F17-9F48-AF733FF1673C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8CD215B-A959-4F17-9F48-AF733FF1673C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8CD215B-A959-4F17-9F48-AF733FF1673C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8CA601FB-BA38-4176-B19C-D16A1F35C1E6}
+	EndGlobalSection
+EndGlobal
