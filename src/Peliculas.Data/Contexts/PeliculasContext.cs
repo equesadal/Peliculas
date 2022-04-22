@@ -1,5 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NetTopologySuite.Geometries;
+using Peliculas.Data.Geometry;
 using Peliculas.Data.Models;
+using System;
 
 namespace Peliculas.Data.Contexts
 {
@@ -19,6 +22,27 @@ namespace Peliculas.Data.Contexts
             modelBuilder.Entity<Pelicula>().HasKey(e => e.Id);
             modelBuilder.Entity<Pelicula>().Property(p => p.Id).HasColumnType("nvarchar(50)").HasMaxLength(50).IsRequired();
             modelBuilder.Entity<Pelicula>().Property(p => p.FechaEstreno).HasColumnType("date");
+
+            modelBuilder.ExecuteDataSeeding();
+        }
+    }
+
+    public static class ModelBuilderExtensions
+    {
+        public static void ExecuteDataSeeding(this ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Pelicula>().HasData(
+                new Pelicula { Id = 1, Titulo = "Lord of Rings", EnCartelera = false, FechaEstreno = new DateTime(2000, 1, 1), PosterUrl = "http://www.lordofrings-themovie.com"},
+                new Pelicula { Id = 2, Titulo = "Sonic 2", EnCartelera = true, FechaEstreno = new DateTime(2022, 4, 22), PosterUrl = "http://www.sonic2-themovie.com" }
+            );
+
+            Point ubicacionCartago = GeometryFactoryHelper.GeometryFactory.CreatePoint(new Coordinate(9.86, -83.95));
+            Point ubicacionTresRios = GeometryFactoryHelper.GeometryFactory.CreatePoint(new Coordinate(9.90, -83.98));
+
+            modelBuilder.Entity<Cine>().HasData(
+                new Cine { Id = 1, Nombre = "Cinepolis Cartago", Ubicacion = ubicacionCartago },
+                new Cine { Id = 2, Nombre = "Cinepolis Tres Rios", Ubicacion = ubicacionTresRios }
+            );
         }
     }
 }
