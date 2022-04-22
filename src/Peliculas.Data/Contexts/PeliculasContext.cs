@@ -10,6 +10,7 @@ namespace Peliculas.Data.Contexts
         }
 
         public DbSet<Pelicula> Peliculas { get; set; }
+        public DbSet<Cine> Cines { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
