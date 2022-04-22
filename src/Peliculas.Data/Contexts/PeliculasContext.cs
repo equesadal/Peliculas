@@ -7,7 +7,6 @@ namespace Peliculas.Data.Contexts
     {
         public PeliculasContext(DbContextOptions<PeliculasContext> options) : base(options)
         {
-
         }
 
         public DbSet<Pelicula> Peliculas { get; set; }
@@ -15,6 +14,10 @@ namespace Peliculas.Data.Contexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("pelis");
+
+            modelBuilder.Entity<Pelicula>().HasKey(e => e.Id);
+            modelBuilder.Entity<Pelicula>().Property(p => p.Id).HasColumnType("nvarchar(50)").HasMaxLength(50).IsRequired();
+            modelBuilder.Entity<Pelicula>().Property(p => p.FechaEstreno).HasColumnType("date");
         }
     }
 }

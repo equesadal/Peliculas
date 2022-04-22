@@ -21,7 +21,9 @@ namespace Peliculas.WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<PeliculasContext>(c => c.UseSqlServer(Configuration.GetConnectionString("EntityTest")));
+            services.AddDbContext<PeliculasContext>(
+                c => c.UseSqlServer(Configuration.GetConnectionString("EntityTest"), x => x.UseNetTopologySuite())
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
