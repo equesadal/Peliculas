@@ -14,14 +14,26 @@ namespace Peliculas.Data.Contexts
 
         public DbSet<Pelicula> Peliculas { get; set; }
         public DbSet<Cine> Cines { get; set; }
+        public DbSet<Actor> Actores { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("pelis");
 
             modelBuilder.Entity<Pelicula>().HasKey(e => e.Id);
-            modelBuilder.Entity<Pelicula>().Property(p => p.Id).HasColumnType("nvarchar(50)").HasMaxLength(50).IsRequired();
+            modelBuilder.Entity<Pelicula>().Property(p => p.Titulo).HasColumnType("nvarchar(50)").HasMaxLength(50).IsRequired();
+            modelBuilder.Entity<Pelicula>().Property(p => p.PosterUrl).HasColumnType("nvarchar(50)").HasMaxLength(50).IsRequired();
             modelBuilder.Entity<Pelicula>().Property(p => p.FechaEstreno).HasColumnType("date");
+
+            modelBuilder.Entity<Actor>().HasKey(e => e.Id);
+            modelBuilder.Entity<Actor>().Property(p => p.Nombre).HasColumnType("nvarchar(50)").HasMaxLength(50).IsRequired();
+            modelBuilder.Entity<Actor>().Property(p => p.Biografia).HasColumnType("nvarchar(50)").HasMaxLength(50).IsRequired();
+            modelBuilder.Entity<Actor>().Property(p => p.FechaNacimiento).HasColumnType("date");
+
+            modelBuilder.Entity<PeliculaActor>().HasKey(p => new { p.PeliculaId, p.ActorId });
+            modelBuilder.Entity<PeliculaActor>().HasOne(p => p.Pelicula);
+            modelBuilder.Entity<PeliculaActor>().HasOne(p => p.Actor);
+            modelBuilder.Entity<PeliculaActor>().Property(p => p.Personaje).HasColumnType("nvarchar(50)").HasMaxLength(50).IsRequired();
 
             modelBuilder.ExecuteDataSeeding();
         }

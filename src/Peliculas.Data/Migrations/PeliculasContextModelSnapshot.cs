@@ -21,6 +21,31 @@ namespace Peliculas.Data.Migrations
                 .HasAnnotation("ProductVersion", "5.0.16")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Peliculas.Data.Models.Actor", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Biografia")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("FechaNacimiento")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Actores");
+                });
+
             modelBuilder.Entity("Peliculas.Data.Models.Cine", b =>
                 {
                     b.Property<int>("Id")
@@ -55,10 +80,10 @@ namespace Peliculas.Data.Migrations
 
             modelBuilder.Entity("Peliculas.Data.Models.Pelicula", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<bool>("EnCartelera")
                         .HasColumnType("bit");
@@ -67,10 +92,14 @@ namespace Peliculas.Data.Migrations
                         .HasColumnType("date");
 
                     b.Property<string>("PosterUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Titulo")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -79,7 +108,7 @@ namespace Peliculas.Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "1",
+                            Id = 1,
                             EnCartelera = false,
                             FechaEstreno = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PosterUrl = "http://www.lordofrings-themovie.com",
@@ -87,12 +116,64 @@ namespace Peliculas.Data.Migrations
                         },
                         new
                         {
-                            Id = "2",
+                            Id = 2,
                             EnCartelera = true,
                             FechaEstreno = new DateTime(2022, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             PosterUrl = "http://www.sonic2-themovie.com",
                             Titulo = "Sonic 2"
                         });
+                });
+
+            modelBuilder.Entity("Peliculas.Data.Models.PeliculaActor", b =>
+                {
+                    b.Property<int>("PeliculaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ActorId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Orden")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Personaje")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("PeliculaId", "ActorId");
+
+                    b.HasIndex("ActorId");
+
+                    b.ToTable("PeliculaActor");
+                });
+
+            modelBuilder.Entity("Peliculas.Data.Models.PeliculaActor", b =>
+                {
+                    b.HasOne("Peliculas.Data.Models.Actor", "Actor")
+                        .WithMany("PeliculaActores")
+                        .HasForeignKey("ActorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Peliculas.Data.Models.Pelicula", "Pelicula")
+                        .WithMany("PeliculaActores")
+                        .HasForeignKey("PeliculaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Actor");
+
+                    b.Navigation("Pelicula");
+                });
+
+            modelBuilder.Entity("Peliculas.Data.Models.Actor", b =>
+                {
+                    b.Navigation("PeliculaActores");
+                });
+
+            modelBuilder.Entity("Peliculas.Data.Models.Pelicula", b =>
+                {
+                    b.Navigation("PeliculaActores");
                 });
 #pragma warning restore 612, 618
         }

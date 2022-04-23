@@ -9,7 +9,6 @@ namespace Peliculas.WebApi.Controllers
     public class PeliculasController : ControllerBase
     {
         [HttpGet]
-        []
         public Task<List<string>> Get()
         {
             var results = new List<string>();
