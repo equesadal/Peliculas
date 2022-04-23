@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 using Peliculas.Data.Contexts;
@@ -10,9 +11,10 @@ using Peliculas.Data.Contexts;
 namespace Peliculas.Data.Migrations
 {
     [DbContext(typeof(PeliculasContext))]
-    partial class PeliculasContextModelSnapshot : ModelSnapshot
+    [Migration("20220423124546_AddedSalasDeCine")]
+    partial class AddedSalasDeCine
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

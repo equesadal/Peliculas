@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Peliculas.Data.Contexts;
+using Peliculas.Data.Repositories;
 
 namespace Peliculas.WebApi
 {
@@ -24,6 +25,7 @@ namespace Peliculas.WebApi
             services.AddDbContext<PeliculasContext>(
                 c => c.UseSqlServer(Configuration.GetConnectionString("EntityTest"), x => x.UseNetTopologySuite())
             );
+            services.AddScoped<IEntityTestRepository, EntityTestRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

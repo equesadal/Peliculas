@@ -11,5 +11,6 @@ namespace Peliculas.Data.Models
         public DateTime FechaEstreno { get; set; }
         public string PosterUrl { get; set; }
         public virtual ICollection<PeliculaActor> PeliculaActores { get; set; }
+        public virtual ICollection<SalaDeCine> SalasDeCine { get; set; }
     }
 }

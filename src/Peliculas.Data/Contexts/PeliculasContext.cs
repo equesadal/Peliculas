@@ -15,6 +15,7 @@ namespace Peliculas.Data.Contexts
         public DbSet<Pelicula> Peliculas { get; set; }
         public DbSet<Cine> Cines { get; set; }
         public DbSet<Actor> Actores { get; set; }
+        public DbSet<PeliculaActor> PeliculaActores { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,6 +35,13 @@ namespace Peliculas.Data.Contexts
             modelBuilder.Entity<PeliculaActor>().HasOne(p => p.Pelicula);
             modelBuilder.Entity<PeliculaActor>().HasOne(p => p.Actor);
             modelBuilder.Entity<PeliculaActor>().Property(p => p.Personaje).HasColumnType("nvarchar(50)").HasMaxLength(50).IsRequired();
+
+            modelBuilder.Entity<Cine>().HasKey(e => e.Id);
+            modelBuilder.Entity<Cine>().Property(p => p.Nombre).HasColumnType("nvarchar(50)").HasMaxLength(50).IsRequired();
+
+            modelBuilder.Entity<SalaDeCine>().HasKey(e => e.Id);
+            modelBuilder.Entity<SalaDeCine>().Property(p => p.TipoSalaCine).HasColumnType("nvarchar(50)").HasMaxLength(50).IsRequired();
+            modelBuilder.Entity<SalaDeCine>().Property(p => p.Precio).HasPrecision(9, 2);
 
             modelBuilder.ExecuteDataSeeding();
         }
