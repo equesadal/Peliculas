@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Peliculas.Data.Models
 {
@@ -9,6 +10,6 @@ namespace Peliculas.Data.Models
         public decimal Precio { get; set; }
         public int CineId { get; set; }
         public Cine Cine { get; set; }
-        public virtual ICollection<Pelicula> Peliculas { get; set; }
+        public virtual ICollection<PeliculaSalaDeCine> Peliculas { get; set; }
     }
 }

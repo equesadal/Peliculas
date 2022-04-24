@@ -18,8 +18,10 @@ namespace Peliculas.Data.Repositories
         public IEnumerable<Pelicula> GetMoviesOnBillboardPaginated(Actor performingActor, int pageSize, int pageNumber)
         {
             return _context.PeliculaActores
-                .Include(p => p.Pelicula)
-                .Where(p => p.ActorId == performingActor.Id)
+                .Include(pa => pa.Pelicula)
+                .ThenInclude(p => p.SalasDeCine)
+                //.ThenInclude(s => s.Cine)
+                .Where(pa => pa.ActorId == performingActor.Id)
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .Select(p => p.Pelicula)
