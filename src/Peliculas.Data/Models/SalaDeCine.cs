@@ -10,6 +10,6 @@ namespace Peliculas.Data.Models
         public decimal Precio { get; set; }
         public int CineId { get; set; }
         public Cine Cine { get; set; }
-        public virtual ICollection<PeliculaSalaDeCine> Peliculas { get; set; }
+        public virtual ICollection<PeliculaSalaDeCine> PeliculasSalaDeCine { get; set; }
     }
 }

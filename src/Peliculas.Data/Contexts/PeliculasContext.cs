@@ -26,7 +26,6 @@ namespace Peliculas.Data.Contexts
             modelBuilder.Entity<Pelicula>().Property(p => p.Titulo).HasColumnType("nvarchar(50)").HasMaxLength(50).IsRequired();
             modelBuilder.Entity<Pelicula>().Property(p => p.PosterUrl).HasColumnType("nvarchar(50)").HasMaxLength(50).IsRequired();
             modelBuilder.Entity<Pelicula>().Property(p => p.FechaEstreno).HasColumnType("date");
-            //modelBuilder.Entity<Pelicula>().HasMany(p => p.SalasDeCine);
 
             modelBuilder.Entity<Actor>().HasKey(e => e.Id);
             modelBuilder.Entity<Actor>().Property(p => p.Nombre).HasColumnType("nvarchar(50)").HasMaxLength(50).IsRequired();
@@ -68,7 +67,16 @@ namespace Peliculas.Data.Contexts
                 new Pelicula { Id = 8, Titulo = "Death on the Nile", EnCartelera = true, FechaEstreno = new DateTime(2022, 3, 1), PosterUrl = "http://www.dummyurl.com" },
                 new Pelicula { Id = 9, Titulo = "Uncharted", EnCartelera = false, FechaEstreno = new DateTime(2022, 3, 10), PosterUrl = "http://www.dummyurl.com" },
                 new Pelicula { Id = 10, Titulo = "The Batman", EnCartelera = true, FechaEstreno = new DateTime(2022, 3, 15), PosterUrl = "http://www.dummyurl.com" },
-                new Pelicula { Id = 11, Titulo = "The Adam Project", EnCartelera = true, FechaEstreno = new DateTime(2022, 4, 1), PosterUrl = "http://www.dummyurl.com" }
+                new Pelicula { Id = 11, Titulo = "The Adam Project", EnCartelera = true, FechaEstreno = new DateTime(2022, 4, 1), PosterUrl = "http://www.dummyurl.com" },
+
+                new Pelicula { Id = 12, Titulo = "Other Movie 1", EnCartelera = true, FechaEstreno = new DateTime(2022, 4, 22), PosterUrl = "http://www.dummyurl.com" },
+                new Pelicula { Id = 13, Titulo = "Other Movie 2", EnCartelera = true, FechaEstreno = new DateTime(2022, 4, 22), PosterUrl = "http://www.dummyurl.com" },
+                new Pelicula { Id = 14, Titulo = "Other Movie 3", EnCartelera = true, FechaEstreno = new DateTime(2022, 4, 22), PosterUrl = "http://www.dummyurl.com" },
+                new Pelicula { Id = 15, Titulo = "Other Movie 4", EnCartelera = true, FechaEstreno = new DateTime(2022, 4, 22), PosterUrl = "http://www.dummyurl.com" },
+                new Pelicula { Id = 16, Titulo = "Other Movie 5", EnCartelera = true, FechaEstreno = new DateTime(2022, 4, 22), PosterUrl = "http://www.dummyurl.com" },
+                new Pelicula { Id = 17, Titulo = "Other Movie 6", EnCartelera = true, FechaEstreno = new DateTime(2022, 4, 22), PosterUrl = "http://www.dummyurl.com" },
+                new Pelicula { Id = 18, Titulo = "Other Movie 7", EnCartelera = true, FechaEstreno = new DateTime(2022, 4, 22), PosterUrl = "http://www.dummyurl.com" },
+                new Pelicula { Id = 19, Titulo = "Other Movie 8", EnCartelera = true, FechaEstreno = new DateTime(2022, 4, 22), PosterUrl = "http://www.dummyurl.com" }
             );
 
             Point ubicacionCartago = GeometryFactoryHelper.GeometryFactory.CreatePoint(new Coordinate(9.86, -83.95));
@@ -105,7 +113,16 @@ namespace Peliculas.Data.Contexts
                 new PeliculaActor { PeliculaId = 8, ActorId = 8, Personaje = "Linnet Ridge", Orden = 1 },
                 new PeliculaActor { PeliculaId = 9, ActorId = 9, Personaje = "Nathan Drake", Orden = 1 },
                 new PeliculaActor { PeliculaId = 10, ActorId = 10, Personaje = "Batman", Orden = 1 },
-                new PeliculaActor { PeliculaId = 11, ActorId = 11, Personaje = "Adam Reed", Orden = 1 }
+                new PeliculaActor { PeliculaId = 11, ActorId = 11, Personaje = "Adam Reed", Orden = 1 },
+
+                new PeliculaActor { PeliculaId = 12, ActorId = 1, Personaje = "Elijah!", Orden = 1 },
+                new PeliculaActor { PeliculaId = 13, ActorId = 1, Personaje = "Elijah!", Orden = 1 },
+                new PeliculaActor { PeliculaId = 14, ActorId = 1, Personaje = "Elijah!", Orden = 1 },
+                new PeliculaActor { PeliculaId = 15, ActorId = 1, Personaje = "Elijah!", Orden = 1 },
+                new PeliculaActor { PeliculaId = 16, ActorId = 1, Personaje = "Elijah!", Orden = 1 },
+                new PeliculaActor { PeliculaId = 17, ActorId = 1, Personaje = "Elijah!", Orden = 1 },
+                new PeliculaActor { PeliculaId = 18, ActorId = 1, Personaje = "Elijah!", Orden = 1 },
+                new PeliculaActor { PeliculaId = 19, ActorId = 1, Personaje = "Elijah!", Orden = 1 }
             );
 
             modelBuilder.Entity<SalaDeCine>().HasData(
@@ -138,7 +155,15 @@ namespace Peliculas.Data.Contexts
                 new PeliculaSalaDeCine { PeliculaId = 8, SalaDeCineId = 7 },
                 new PeliculaSalaDeCine { PeliculaId = 9, SalaDeCineId = 8 },
                 new PeliculaSalaDeCine { PeliculaId = 10, SalaDeCineId = 9 },
-                new PeliculaSalaDeCine { PeliculaId = 11, SalaDeCineId = 10 }
+                new PeliculaSalaDeCine { PeliculaId = 11, SalaDeCineId = 10 },
+                new PeliculaSalaDeCine { PeliculaId = 12, SalaDeCineId = 9 },
+                new PeliculaSalaDeCine { PeliculaId = 13, SalaDeCineId = 9 },
+                new PeliculaSalaDeCine { PeliculaId = 14, SalaDeCineId = 9 },
+                new PeliculaSalaDeCine { PeliculaId = 15, SalaDeCineId = 9 },
+                new PeliculaSalaDeCine { PeliculaId = 16, SalaDeCineId = 9 },
+                new PeliculaSalaDeCine { PeliculaId = 17, SalaDeCineId = 9 },
+                new PeliculaSalaDeCine { PeliculaId = 18, SalaDeCineId = 9 },
+                new PeliculaSalaDeCine { PeliculaId = 19, SalaDeCineId = 9 }
             );
         }
     }

@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Peliculas.Data.Models;
 using Peliculas.Data.Repositories;
+using Peliculas.WebApi.DTOs;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Peliculas.WebApi.Controllers
@@ -18,15 +20,24 @@ namespace Peliculas.WebApi.Controllers
         }
 
         [HttpGet]
-        public Task<IEnumerable<Pelicula>> Get()
+        public Task<List<BillboardMovie>> Get()
         {
             var movies = _repository.GetMoviesOnBillboardPaginated(new Actor { Id = 1 }, 5, 2);
 
+            var result = new List<BillboardMovie>().Take(2);
+            foreach (var movie in movies)
+            {
+                var movieToAdd = new BillboardMovie {
+                    Titulo = movie.Titulo,
+                    Estreno = movie.FechaEstreno,
+                    Generos = new List<string> { "Pending" },
+                    Cines = movie.PeliculasSalasDeCine.Select(p => p.SalaDeCine.Cine.Nombre).ToList()
+                };
 
-            var results = new List<string>();
-            results.Add("Hello world!");
+                result.Add(movieToAdd);
+            }
 
-            return Task.FromResult(movies);
+            return Task.FromResult(result);
         }
     }
 }

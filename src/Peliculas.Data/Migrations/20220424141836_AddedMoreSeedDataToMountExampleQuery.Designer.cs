@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NetTopologySuite.Geometries;
 using Peliculas.Data.Contexts;
@@ -10,9 +11,10 @@ using Peliculas.Data.Contexts;
 namespace Peliculas.Data.Migrations
 {
     [DbContext(typeof(PeliculasContext))]
-    partial class PeliculasContextModelSnapshot : ModelSnapshot
+    [Migration("20220424141836_AddedMoreSeedDataToMountExampleQuery")]
+    partial class AddedMoreSeedDataToMountExampleQuery
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,77 +52,77 @@ namespace Peliculas.Data.Migrations
                         {
                             Id = 1,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 866, DateTimeKind.Local).AddTicks(1683),
+                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 18, 35, 60, DateTimeKind.Local).AddTicks(7160),
                             Nombre = "Elijah Wood"
                         },
                         new
                         {
                             Id = 2,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5904),
+                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 18, 35, 62, DateTimeKind.Local).AddTicks(2700),
                             Nombre = "Idris Elba"
                         },
                         new
                         {
                             Id = 3,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5956),
+                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 18, 35, 62, DateTimeKind.Local).AddTicks(2760),
                             Nombre = "Rosalie Chiang"
                         },
                         new
                         {
                             Id = 4,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5959),
+                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 18, 35, 62, DateTimeKind.Local).AddTicks(2769),
                             Nombre = "Halle Berry"
                         },
                         new
                         {
                             Id = 5,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5961),
+                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 18, 35, 62, DateTimeKind.Local).AddTicks(2771),
                             Nombre = "Jessica Chastain"
                         },
                         new
                         {
                             Id = 6,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5962),
+                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 18, 35, 62, DateTimeKind.Local).AddTicks(2773),
                             Nombre = "Neve Campbell"
                         },
                         new
                         {
                             Id = 7,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5964),
+                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 18, 35, 62, DateTimeKind.Local).AddTicks(2776),
                             Nombre = "Jennifer Lopez"
                         },
                         new
                         {
                             Id = 8,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5966),
+                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 18, 35, 62, DateTimeKind.Local).AddTicks(2778),
                             Nombre = "Gal Gadot"
                         },
                         new
                         {
                             Id = 9,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5968),
+                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 18, 35, 62, DateTimeKind.Local).AddTicks(2780),
                             Nombre = "Tom Holland"
                         },
                         new
                         {
                             Id = 10,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5970),
+                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 18, 35, 62, DateTimeKind.Local).AddTicks(2782),
                             Nombre = "Robert Pattinson"
                         },
                         new
                         {
                             Id = 11,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5972),
+                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 18, 35, 62, DateTimeKind.Local).AddTicks(2785),
                             Nombre = "Ryan Reynolds"
                         });
                 });
@@ -599,46 +601,6 @@ namespace Peliculas.Data.Migrations
                         {
                             PeliculaId = 11,
                             SalaDeCineId = 10
-                        },
-                        new
-                        {
-                            PeliculaId = 12,
-                            SalaDeCineId = 9
-                        },
-                        new
-                        {
-                            PeliculaId = 13,
-                            SalaDeCineId = 9
-                        },
-                        new
-                        {
-                            PeliculaId = 14,
-                            SalaDeCineId = 9
-                        },
-                        new
-                        {
-                            PeliculaId = 15,
-                            SalaDeCineId = 9
-                        },
-                        new
-                        {
-                            PeliculaId = 16,
-                            SalaDeCineId = 9
-                        },
-                        new
-                        {
-                            PeliculaId = 17,
-                            SalaDeCineId = 9
-                        },
-                        new
-                        {
-                            PeliculaId = 18,
-                            SalaDeCineId = 9
-                        },
-                        new
-                        {
-                            PeliculaId = 19,
-                            SalaDeCineId = 9
                         });
                 });
 

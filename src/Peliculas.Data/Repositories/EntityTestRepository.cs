@@ -17,16 +17,17 @@ namespace Peliculas.Data.Repositories
 
         public IEnumerable<Pelicula> GetMoviesOnBillboardPaginated(Actor performingActor, int pageSize, int pageNumber)
         {
-            return _context.PeliculaActores
-                .Include(pa => pa.Pelicula)
-                .ThenInclude(p => p.SalasDeCine)
-                //.ThenInclude(s => s.Cine)
-                .Where(pa => pa.ActorId == performingActor.Id)
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize)
+            return _context.PeliculaActores                 // Some notes about this query:
+                .Include(pa => pa.Pelicula)                 // Using eager loading
+                .ThenInclude(p => p.PeliculasSalasDeCine)
+                .ThenInclude(p => p.SalaDeCine)
+                .ThenInclude(p => p.Cine)
+                .Where(pa => pa.ActorId == performingActor.Id && pa.Pelicula.EnCartelera == true)
+                .Skip((pageNumber - 1) * pageSize)          // then skipping first page
+                .Take(pageSize)                             // and taking the whole 2nd page (not only 2 rows, will do it in the upper call)
                 .Select(p => p.Pelicula)
-                .AsNoTracking()
-                .ToList();
+                .AsNoTracking()                             // finally dont track the query
+                .ToList();                                  // we can materialize the page of data here as few rows (no more than 5) are returned
         }
     }
 }
