@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using NetTopologySuite.Geometries;
+using Peliculas.Data.Geometry;
 using Peliculas.Data.Models;
 using Peliculas.Data.Repositories;
 using Peliculas.WebApi.DTOs;
@@ -38,6 +41,45 @@ namespace Peliculas.WebApi.Controllers
             }
 
             return Task.FromResult(result);
+        }
+
+        [HttpGet]
+        [Route("GetFirstGenrer")]
+        public Genero GetGenrer()
+        {
+            char startingLetter = 'X';
+            var genrer = _repository.GetFirstGenrerByLetter(startingLetter);
+
+            // Per design, 204 status (No Content) is being sent back.
+            return genrer;
+        }
+
+        [HttpGet]
+        [Route("GetAllGenrers")]
+        public Task<List<string>> GetAllGenrers()
+        {
+            var genrers = _repository.GetAllGenrers().Select(g => g.Nombre).ToList();
+
+            return Task.FromResult(genrers);
+        }
+
+        [HttpGet]
+        [Route("GetTeathers")]
+        public Task<List<string>> GetTeathersByCurrentMonthBillboadMovies()
+        {
+            var teathers = _repository.CurrentTheathersByMonthBillboardMovies().ToList();
+
+            return Task.FromResult(teathers);
+        }
+
+        [HttpGet]
+        [Route("GetTeathersByLocation")]
+        public Task<List<string>> GetTeathersByLocation()
+        {
+            Point currentLocation = GeometryFactoryHelper.GeometryFactory.CreatePoint(new Coordinate(9.83, -83.96));
+            var teathers = _repository.GetTeathersByLocation(currentLocation).ToList();
+
+            return Task.FromResult(teathers.Select(t => $"{t.Item1.Nombre}, distance: {t.Item2}").ToList());
         }
     }
 }

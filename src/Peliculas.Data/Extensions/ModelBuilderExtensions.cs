@@ -126,7 +126,8 @@ namespace Peliculas.Data.Extensions
                 new Genero { Identificador = 3, Nombre = "Drama" },
                 new Genero { Identificador = 4, Nombre = "Fantasy" },
                 new Genero { Identificador = 5, Nombre = "Horror" },
-                new Genero { Identificador = 6, Nombre = "Mistery" }
+                new Genero { Identificador = 6, Nombre = "Mistery" }, 
+                new Genero { Identificador = 7, Nombre = "Crime" }
             );
 
             modelBuilder.Entity<GeneroPelicula>().HasData(
