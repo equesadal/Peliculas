@@ -23,9 +23,9 @@ namespace Peliculas.WebApi.Controllers
         }
 
         [HttpGet]
-        public Task<List<BillboardMovie>> Get()
-        {
-            var movies = _repository.GetMoviesOnBillboardPaginated(new Actor { Id = 1 }, 5, 2);
+        public Task<List<BillboardMovie>> Get(int actorId)
+        {           
+            var movies = _repository.GetMoviesOnBillboardPaginated(new Actor { Id = actorId }, 5, 2);
 
             var result = new List<BillboardMovie>().Take(2).ToList();
             foreach (var movie in movies)
@@ -47,7 +47,7 @@ namespace Peliculas.WebApi.Controllers
         [Route("GetFirstGenrer")]
         public Genero GetGenrer()
         {
-            char startingLetter = 'X';
+            char startingLetter = 'C';
             var genrer = _repository.GetFirstGenrerByLetter(startingLetter);
 
             // Per design, 204 status (No Content) is being sent back.
