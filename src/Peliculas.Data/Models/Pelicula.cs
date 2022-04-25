@@ -13,5 +13,6 @@ namespace Peliculas.Data.Models
         public string PosterUrl { get; set; }
         public virtual ICollection<PeliculaActor> PeliculaActores { get; set; }
         public virtual ICollection<PeliculaSalaDeCine> PeliculasSalasDeCine { get; set; }
+        public virtual ICollection<GeneroPelicula> GenerosPelicula { get; set; }
     }
 }

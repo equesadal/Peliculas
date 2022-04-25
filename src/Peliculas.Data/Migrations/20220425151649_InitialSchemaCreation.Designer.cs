@@ -11,8 +11,8 @@ using Peliculas.Data.Contexts;
 namespace Peliculas.Data.Migrations
 {
     [DbContext(typeof(PeliculasContext))]
-    [Migration("20220423124546_AddedSalasDeCine")]
-    partial class AddedSalasDeCine
+    [Migration("20220425151649_InitialSchemaCreation")]
+    partial class InitialSchemaCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,21 +22,6 @@ namespace Peliculas.Data.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.16")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("PeliculaSalaDeCine", b =>
-                {
-                    b.Property<int>("PeliculasId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SalasDeCineId")
-                        .HasColumnType("int");
-
-                    b.HasKey("PeliculasId", "SalasDeCineId");
-
-                    b.HasIndex("SalasDeCineId");
-
-                    b.ToTable("PeliculaSalaDeCine");
-                });
 
             modelBuilder.Entity("Peliculas.Data.Models.Actor", b =>
                 {
@@ -66,9 +51,7 @@ namespace Peliculas.Data.Migrations
             modelBuilder.Entity("Peliculas.Data.Models.Cine", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -81,20 +64,63 @@ namespace Peliculas.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Cines");
+                });
 
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Nombre = "Cinepolis Cartago",
-                            Ubicacion = (NetTopologySuite.Geometries.Point)new NetTopologySuite.IO.WKTReader().Read("SRID=4326;POINT (9.86 -83.95)")
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Nombre = "Cinepolis Tres Rios",
-                            Ubicacion = (NetTopologySuite.Geometries.Point)new NetTopologySuite.IO.WKTReader().Read("SRID=4326;POINT (9.9 -83.98)")
-                        });
+            modelBuilder.Entity("Peliculas.Data.Models.CineOferta", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CineId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("FechaFin")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("FechaInicio")
+                        .HasColumnType("date");
+
+                    b.Property<decimal>("PorcentajeDescuento")
+                        .HasPrecision(9, 2)
+                        .HasColumnType("decimal(9,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CineOferta");
+                });
+
+            modelBuilder.Entity("Peliculas.Data.Models.Genero", b =>
+                {
+                    b.Property<int>("Identificador")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Identificador");
+
+                    b.ToTable("Generos");
+                });
+
+            modelBuilder.Entity("Peliculas.Data.Models.GeneroPelicula", b =>
+                {
+                    b.Property<int>("PeliculaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GeneroIdentificador")
+                        .HasColumnType("int");
+
+                    b.HasKey("PeliculaId", "GeneroIdentificador");
+
+                    b.HasIndex("GeneroIdentificador");
+
+                    b.ToTable("GeneroPelicula");
                 });
 
             modelBuilder.Entity("Peliculas.Data.Models.Pelicula", b =>
@@ -123,24 +149,6 @@ namespace Peliculas.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Peliculas");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            EnCartelera = false,
-                            FechaEstreno = new DateTime(2000, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PosterUrl = "http://www.lordofrings-themovie.com",
-                            Titulo = "Lord of Rings"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            EnCartelera = true,
-                            FechaEstreno = new DateTime(2022, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            PosterUrl = "http://www.sonic2-themovie.com",
-                            Titulo = "Sonic 2"
-                        });
                 });
 
             modelBuilder.Entity("Peliculas.Data.Models.PeliculaActor", b =>
@@ -164,6 +172,21 @@ namespace Peliculas.Data.Migrations
                     b.HasIndex("ActorId");
 
                     b.ToTable("PeliculaActores");
+                });
+
+            modelBuilder.Entity("Peliculas.Data.Models.PeliculaSalaDeCine", b =>
+                {
+                    b.Property<int>("PeliculaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SalaDeCineId")
+                        .HasColumnType("int");
+
+                    b.HasKey("PeliculaId", "SalaDeCineId");
+
+                    b.HasIndex("SalaDeCineId");
+
+                    b.ToTable("PeliculaSalaDeCine");
                 });
 
             modelBuilder.Entity("Peliculas.Data.Models.SalaDeCine", b =>
@@ -192,19 +215,34 @@ namespace Peliculas.Data.Migrations
                     b.ToTable("SalaDeCine");
                 });
 
-            modelBuilder.Entity("PeliculaSalaDeCine", b =>
+            modelBuilder.Entity("Peliculas.Data.Models.Cine", b =>
                 {
-                    b.HasOne("Peliculas.Data.Models.Pelicula", null)
-                        .WithMany()
-                        .HasForeignKey("PeliculasId")
+                    b.HasOne("Peliculas.Data.Models.CineOferta", "CineOferta")
+                        .WithOne("Cine")
+                        .HasForeignKey("Peliculas.Data.Models.Cine", "Id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CineOferta");
+                });
+
+            modelBuilder.Entity("Peliculas.Data.Models.GeneroPelicula", b =>
+                {
+                    b.HasOne("Peliculas.Data.Models.Genero", "Genero")
+                        .WithMany("GenerosPelicula")
+                        .HasForeignKey("GeneroIdentificador")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Peliculas.Data.Models.SalaDeCine", null)
-                        .WithMany()
-                        .HasForeignKey("SalasDeCineId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                    b.HasOne("Peliculas.Data.Models.Pelicula", "Pelicula")
+                        .WithMany("GenerosPelicula")
+                        .HasForeignKey("PeliculaId")
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
+
+                    b.Navigation("Genero");
+
+                    b.Navigation("Pelicula");
                 });
 
             modelBuilder.Entity("Peliculas.Data.Models.PeliculaActor", b =>
@@ -212,13 +250,13 @@ namespace Peliculas.Data.Migrations
                     b.HasOne("Peliculas.Data.Models.Actor", "Actor")
                         .WithMany("PeliculaActores")
                         .HasForeignKey("ActorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Peliculas.Data.Models.Pelicula", "Pelicula")
                         .WithMany("PeliculaActores")
                         .HasForeignKey("PeliculaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Actor");
@@ -226,12 +264,31 @@ namespace Peliculas.Data.Migrations
                     b.Navigation("Pelicula");
                 });
 
+            modelBuilder.Entity("Peliculas.Data.Models.PeliculaSalaDeCine", b =>
+                {
+                    b.HasOne("Peliculas.Data.Models.Pelicula", "Pelicula")
+                        .WithMany("PeliculasSalasDeCine")
+                        .HasForeignKey("PeliculaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Peliculas.Data.Models.SalaDeCine", "SalaDeCine")
+                        .WithMany("PeliculasSalaDeCine")
+                        .HasForeignKey("SalaDeCineId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Pelicula");
+
+                    b.Navigation("SalaDeCine");
+                });
+
             modelBuilder.Entity("Peliculas.Data.Models.SalaDeCine", b =>
                 {
                     b.HasOne("Peliculas.Data.Models.Cine", "Cine")
                         .WithMany()
                         .HasForeignKey("CineId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Cine");
@@ -242,9 +299,28 @@ namespace Peliculas.Data.Migrations
                     b.Navigation("PeliculaActores");
                 });
 
+            modelBuilder.Entity("Peliculas.Data.Models.CineOferta", b =>
+                {
+                    b.Navigation("Cine");
+                });
+
+            modelBuilder.Entity("Peliculas.Data.Models.Genero", b =>
+                {
+                    b.Navigation("GenerosPelicula");
+                });
+
             modelBuilder.Entity("Peliculas.Data.Models.Pelicula", b =>
                 {
+                    b.Navigation("GenerosPelicula");
+
                     b.Navigation("PeliculaActores");
+
+                    b.Navigation("PeliculasSalasDeCine");
+                });
+
+            modelBuilder.Entity("Peliculas.Data.Models.SalaDeCine", b =>
+                {
+                    b.Navigation("PeliculasSalaDeCine");
                 });
 #pragma warning restore 612, 618
         }

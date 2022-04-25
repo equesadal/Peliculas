@@ -24,7 +24,7 @@ namespace Peliculas.WebApi.Controllers
         {
             var movies = _repository.GetMoviesOnBillboardPaginated(new Actor { Id = 1 }, 5, 2);
 
-            var result = new List<BillboardMovie>().Take(2);
+            var result = new List<BillboardMovie>().Take(2).ToList();
             foreach (var movie in movies)
             {
                 var movieToAdd = new BillboardMovie {

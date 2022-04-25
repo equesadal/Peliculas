@@ -11,8 +11,8 @@ using Peliculas.Data.Contexts;
 namespace Peliculas.Data.Migrations
 {
     [DbContext(typeof(PeliculasContext))]
-    [Migration("20220424142055_AddedMoreSeedDataToMountExampleQuery2")]
-    partial class AddedMoreSeedDataToMountExampleQuery2
+    [Migration("20220425151929_DataSeedLoading")]
+    partial class DataSeedLoading
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -52,77 +52,77 @@ namespace Peliculas.Data.Migrations
                         {
                             Id = 1,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 866, DateTimeKind.Local).AddTicks(1683),
+                            FechaNacimiento = new DateTime(2022, 4, 25, 9, 19, 28, 723, DateTimeKind.Local).AddTicks(3131),
                             Nombre = "Elijah Wood"
                         },
                         new
                         {
                             Id = 2,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5904),
+                            FechaNacimiento = new DateTime(2022, 4, 25, 9, 19, 28, 724, DateTimeKind.Local).AddTicks(7403),
                             Nombre = "Idris Elba"
                         },
                         new
                         {
                             Id = 3,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5956),
+                            FechaNacimiento = new DateTime(2022, 4, 25, 9, 19, 28, 724, DateTimeKind.Local).AddTicks(7453),
                             Nombre = "Rosalie Chiang"
                         },
                         new
                         {
                             Id = 4,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5959),
+                            FechaNacimiento = new DateTime(2022, 4, 25, 9, 19, 28, 724, DateTimeKind.Local).AddTicks(7455),
                             Nombre = "Halle Berry"
                         },
                         new
                         {
                             Id = 5,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5961),
+                            FechaNacimiento = new DateTime(2022, 4, 25, 9, 19, 28, 724, DateTimeKind.Local).AddTicks(7458),
                             Nombre = "Jessica Chastain"
                         },
                         new
                         {
                             Id = 6,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5962),
+                            FechaNacimiento = new DateTime(2022, 4, 25, 9, 19, 28, 724, DateTimeKind.Local).AddTicks(7459),
                             Nombre = "Neve Campbell"
                         },
                         new
                         {
                             Id = 7,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5964),
+                            FechaNacimiento = new DateTime(2022, 4, 25, 9, 19, 28, 724, DateTimeKind.Local).AddTicks(7461),
                             Nombre = "Jennifer Lopez"
                         },
                         new
                         {
                             Id = 8,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5966),
+                            FechaNacimiento = new DateTime(2022, 4, 25, 9, 19, 28, 724, DateTimeKind.Local).AddTicks(7463),
                             Nombre = "Gal Gadot"
                         },
                         new
                         {
                             Id = 9,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5968),
+                            FechaNacimiento = new DateTime(2022, 4, 25, 9, 19, 28, 724, DateTimeKind.Local).AddTicks(7464),
                             Nombre = "Tom Holland"
                         },
                         new
                         {
                             Id = 10,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5970),
+                            FechaNacimiento = new DateTime(2022, 4, 25, 9, 19, 28, 724, DateTimeKind.Local).AddTicks(7466),
                             Nombre = "Robert Pattinson"
                         },
                         new
                         {
                             Id = 11,
                             Biografia = "Bio here",
-                            FechaNacimiento = new DateTime(2022, 4, 24, 8, 20, 54, 867, DateTimeKind.Local).AddTicks(5972),
+                            FechaNacimiento = new DateTime(2022, 4, 25, 9, 19, 28, 724, DateTimeKind.Local).AddTicks(7469),
                             Nombre = "Ryan Reynolds"
                         });
                 });
@@ -130,9 +130,7 @@ namespace Peliculas.Data.Migrations
             modelBuilder.Entity("Peliculas.Data.Models.Cine", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<string>("Nombre")
                         .IsRequired()
@@ -164,6 +162,203 @@ namespace Peliculas.Data.Migrations
                             Id = 3,
                             Nombre = "Multiplaza Cines",
                             Ubicacion = (NetTopologySuite.Geometries.Point)new NetTopologySuite.IO.WKTReader().Read("SRID=4326;POINT (9.9 -83.98)")
+                        });
+                });
+
+            modelBuilder.Entity("Peliculas.Data.Models.CineOferta", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CineId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("FechaFin")
+                        .HasColumnType("date");
+
+                    b.Property<DateTime>("FechaInicio")
+                        .HasColumnType("date");
+
+                    b.Property<decimal>("PorcentajeDescuento")
+                        .HasPrecision(9, 2)
+                        .HasColumnType("decimal(9,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CineOferta");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CineId = 1,
+                            FechaFin = new DateTime(2022, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaInicio = new DateTime(2022, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PorcentajeDescuento = 10m
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CineId = 2,
+                            FechaFin = new DateTime(2022, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaInicio = new DateTime(2022, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PorcentajeDescuento = 10m
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CineId = 3,
+                            FechaFin = new DateTime(2022, 1, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FechaInicio = new DateTime(2022, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            PorcentajeDescuento = 10m
+                        });
+                });
+
+            modelBuilder.Entity("Peliculas.Data.Models.Genero", b =>
+                {
+                    b.Property<int>("Identificador")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Identificador");
+
+                    b.ToTable("Generos");
+
+                    b.HasData(
+                        new
+                        {
+                            Identificador = 1,
+                            Nombre = "Action"
+                        },
+                        new
+                        {
+                            Identificador = 2,
+                            Nombre = "Comedy"
+                        },
+                        new
+                        {
+                            Identificador = 3,
+                            Nombre = "Drama"
+                        },
+                        new
+                        {
+                            Identificador = 4,
+                            Nombre = "Fantasy"
+                        },
+                        new
+                        {
+                            Identificador = 5,
+                            Nombre = "Horror"
+                        },
+                        new
+                        {
+                            Identificador = 6,
+                            Nombre = "Mistery"
+                        });
+                });
+
+            modelBuilder.Entity("Peliculas.Data.Models.GeneroPelicula", b =>
+                {
+                    b.Property<int>("PeliculaId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GeneroIdentificador")
+                        .HasColumnType("int");
+
+                    b.HasKey("PeliculaId", "GeneroIdentificador");
+
+                    b.HasIndex("GeneroIdentificador");
+
+                    b.ToTable("GeneroPelicula");
+
+                    b.HasData(
+                        new
+                        {
+                            PeliculaId = 1,
+                            GeneroIdentificador = 4
+                        },
+                        new
+                        {
+                            PeliculaId = 1,
+                            GeneroIdentificador = 1
+                        },
+                        new
+                        {
+                            PeliculaId = 2,
+                            GeneroIdentificador = 2
+                        },
+                        new
+                        {
+                            PeliculaId = 2,
+                            GeneroIdentificador = 3
+                        },
+                        new
+                        {
+                            PeliculaId = 3,
+                            GeneroIdentificador = 4
+                        },
+                        new
+                        {
+                            PeliculaId = 3,
+                            GeneroIdentificador = 5
+                        },
+                        new
+                        {
+                            PeliculaId = 4,
+                            GeneroIdentificador = 6
+                        },
+                        new
+                        {
+                            PeliculaId = 4,
+                            GeneroIdentificador = 1
+                        },
+                        new
+                        {
+                            PeliculaId = 5,
+                            GeneroIdentificador = 2
+                        },
+                        new
+                        {
+                            PeliculaId = 5,
+                            GeneroIdentificador = 3
+                        },
+                        new
+                        {
+                            PeliculaId = 6,
+                            GeneroIdentificador = 4
+                        },
+                        new
+                        {
+                            PeliculaId = 7,
+                            GeneroIdentificador = 5
+                        },
+                        new
+                        {
+                            PeliculaId = 8,
+                            GeneroIdentificador = 6
+                        },
+                        new
+                        {
+                            PeliculaId = 9,
+                            GeneroIdentificador = 2
+                        },
+                        new
+                        {
+                            PeliculaId = 10,
+                            GeneroIdentificador = 3
+                        },
+                        new
+                        {
+                            PeliculaId = 11,
+                            GeneroIdentificador = 4
                         });
                 });
 
@@ -749,18 +944,48 @@ namespace Peliculas.Data.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Peliculas.Data.Models.Cine", b =>
+                {
+                    b.HasOne("Peliculas.Data.Models.CineOferta", "CineOferta")
+                        .WithOne("Cine")
+                        .HasForeignKey("Peliculas.Data.Models.Cine", "Id")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("CineOferta");
+                });
+
+            modelBuilder.Entity("Peliculas.Data.Models.GeneroPelicula", b =>
+                {
+                    b.HasOne("Peliculas.Data.Models.Genero", "Genero")
+                        .WithMany("GenerosPelicula")
+                        .HasForeignKey("GeneroIdentificador")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Peliculas.Data.Models.Pelicula", "Pelicula")
+                        .WithMany("GenerosPelicula")
+                        .HasForeignKey("PeliculaId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Genero");
+
+                    b.Navigation("Pelicula");
+                });
+
             modelBuilder.Entity("Peliculas.Data.Models.PeliculaActor", b =>
                 {
                     b.HasOne("Peliculas.Data.Models.Actor", "Actor")
                         .WithMany("PeliculaActores")
                         .HasForeignKey("ActorId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Peliculas.Data.Models.Pelicula", "Pelicula")
                         .WithMany("PeliculaActores")
                         .HasForeignKey("PeliculaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Actor");
@@ -773,13 +998,13 @@ namespace Peliculas.Data.Migrations
                     b.HasOne("Peliculas.Data.Models.Pelicula", "Pelicula")
                         .WithMany("PeliculasSalasDeCine")
                         .HasForeignKey("PeliculaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Peliculas.Data.Models.SalaDeCine", "SalaDeCine")
                         .WithMany("PeliculasSalaDeCine")
                         .HasForeignKey("SalaDeCineId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Pelicula");
@@ -792,7 +1017,7 @@ namespace Peliculas.Data.Migrations
                     b.HasOne("Peliculas.Data.Models.Cine", "Cine")
                         .WithMany()
                         .HasForeignKey("CineId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Cine");
@@ -803,8 +1028,20 @@ namespace Peliculas.Data.Migrations
                     b.Navigation("PeliculaActores");
                 });
 
+            modelBuilder.Entity("Peliculas.Data.Models.CineOferta", b =>
+                {
+                    b.Navigation("Cine");
+                });
+
+            modelBuilder.Entity("Peliculas.Data.Models.Genero", b =>
+                {
+                    b.Navigation("GenerosPelicula");
+                });
+
             modelBuilder.Entity("Peliculas.Data.Models.Pelicula", b =>
                 {
+                    b.Navigation("GenerosPelicula");
+
                     b.Navigation("PeliculaActores");
 
                     b.Navigation("PeliculasSalasDeCine");
